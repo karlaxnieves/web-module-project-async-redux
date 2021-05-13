@@ -1,15 +1,16 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
+import { fetchPerson } from '../actions';
 
 const Joke = (props) =>{
 const {joke, isFetching, error, dispatch} = props
 
 useEffect(()=>{
-
-})
+dispatch(fetchPerson())
+}, [])
 
 const handleClick = () =>{
-
+    dispatch(fetchPerson())
 }
 
 if (error) {
@@ -27,7 +28,7 @@ if (error) {
         <h3>{joke.title}</h3>
         <h3>{joke.text}</h3>
       </div>
-      <button onClick={(e)=>{ handleClick() }}>Get new joke</button>
+      <button onClick={(e)=>{ handleClick() }}>Get joke</button>
     </>
   );
 };
