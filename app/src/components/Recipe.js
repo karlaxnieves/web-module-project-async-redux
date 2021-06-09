@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import { getRecipe }  from './../actions';
+
 const Recipe = (props) =>{
-    const { recipe, isFetching, error } = props;
+    const { meal, isFetching, error } = props;
     useEffect(() => {
       props.getRecipe();
     }, []);
@@ -16,15 +18,15 @@ const Recipe = (props) =>{
     }
   
     if (isFetching) {
-      return <h2>Fetching person for ya!</h2>;
+      return <h2>Hold while we fetch your next meal!</h2>;
     }
   
     return (
       <>
         <div>
-          <h2>Today we are making: {recipe.strMeal}</h2>
-          <h2>This dish is a {recipe.strArea} classic</h2>
-        <h2>Instructions: {recipe.strInstructions}</h2>
+          <h2>Today we are making: {meal.strMeal}</h2>
+          <h2>This dish is a  classic {meal.strArea}</h2>
+        <h2>Instructions: {meal.strInstructions}</h2>
         </div>
         <button onClick={handleClick}>Get new recipe</button>
       </>
@@ -33,7 +35,7 @@ const Recipe = (props) =>{
   
   const mapStateToProps = state => {
     return {
-      recipe: state.recipe,
+      meal: state.meal,
       isFetching: state.isFetching,
       error: state.error
     };

@@ -11,8 +11,7 @@ export const getRecipe = () => {
 
         axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(res => {
-            console.log(res)
-            // dispatch(fetchSuccess(resp.data.results[0]));
+            dispatch(fetchSuccess(res.data.meals[0]));
         })
         .catch(err=>{
             dispatch(fetchFail(err));
